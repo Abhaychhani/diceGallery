@@ -16,4 +16,4 @@
       };
     });
   }
-  setTimeout(loadImages,1500)
+  setTimeout(loadImages,500)
