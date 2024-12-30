@@ -11,15 +11,57 @@
     width: 100vw;
     background:radial-gradient(#00ddff, #86c7f8);
   }
+/* loader */
+  #loader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 120px;
+    aspect-ratio: 3/1;
+    display: grid;
+    color: #046d8b;
+  }
+  #loader::before,
+  #loader::after{
+    content: "";
+    grid-area: 1/1;
+    --c:#0000 calc(100%/3),#046d8b 0 calc(2*100%/3),#0000 0;
+    --c1:linear-gradient(90deg,var(--c));
+    --c2:linear-gradient(0deg,var(--c));
+    background: var(--c1),var(--c2),var(--c1),var(--c2);
+    background-size: 300% 8px, 8px 300%;
+    background-repeat: no-repeat;
+    animation: animate 1s infinite;
+  }
+  #loader::after{
+    animation-delay: -.5s;
+  }
+  @keyframes animate {
+    0%{background-position: 50% 0, 100% 100%, 0 100%, 0 0;}
+    25%{background-position: 0 0, 100% 50%, 0 100%, 0 0;}
+    50%{background-position: 0 0, 100% 0%, 50% 100%, 0 0;}
+    75%{background-position: 0% 0, 100% 0%, 100% 100%, 0 50%;}
+    75.01%{background-position: 100% 0, 100% 0%, 100% 100%, 0 50%;}
+    100%{background-position: 50% 0, 100% 0%, 100% 100%, 0 100%;}
+  }
+  #loader.hidden{
+    display: none;
+  }
+
   .dice {
     position: absolute;
     left: 50%;
     top: 50%;
+    display: block;
     transform: translate(-50%, -50%);
     width: var(--dice-size);
     height: var(--dice-size);
     transform-style: preserve-3d;
     animation: spin 7s infinite ease-in alternate;
+  }
+  .dice.hidden{
+    display: none;
   }
 
   .face {
